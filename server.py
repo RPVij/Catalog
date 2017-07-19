@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, request, redirect, jsonify, url_for
 import cgi
 from sqlalchemy import create_engine
@@ -23,10 +24,13 @@ import bleach
 
 app = Flask('__name__')
 
-CLIENT_ID = json.loads(open('client_secrets.json', 'r').read())['web']['client_id']
+path = os.path.dirname(__file__)
+
+CLIENT_ID = json.loads(open(path+'client_secrets.json', 'r').read())['web']['client_id']
 APPLICATION_NAME = "Catalog"
 
-engine = create_engine('sqlite:///catalog.db')
+# engine = create_engine('sqlite:///catalog.db')
+engine = create_engine('postgresql://catalog:password@localhost/catalog')
 # Bind the engine to the metadata of the Base class so that the
 # declaratives can be accessed through a DBSession instance
 Base.metadata.bind = engine
