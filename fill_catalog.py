@@ -15,12 +15,12 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 # Delete all the categories to avoid repetition
-session.query(Category).delete()
-session.commit()
+# session.query(Category).delete()
+# session.commit()
 
 # Delete all the items to avoid repetition
-session.query(Item).delete()
-session.commit()
+# session.query(Item).delete()
+# session.commit()
 
 # Start new entries
 
